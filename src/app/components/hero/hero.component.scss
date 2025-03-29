@@ -1,0 +1,44 @@
+@import "/src/styles/variables";
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.slogan {
+  h1 {
+    color: $secondary-color;
+    span {
+      color: $tertiary-color;
+    }
+  }
+
+  p {
+    margin: 20px 0;
+    color: $secondary-color;
+  }
+
+  nav {
+    display: flex;
+    gap: 10px;
+
+    a {
+      display: block;
+      border-radius: 8px;
+      padding: 8px;
+      font-size: 14px;
+      color: $white;
+
+      &:first-child {
+        background-color: $tertiary-color;
+      }
+
+      &:last-child {
+        background-color: $primary-color;
+      }
+    }
+  }
+}

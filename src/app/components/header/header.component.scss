@@ -7,13 +7,34 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 20px;
+  }
+}
 
-    nav {
-      display: flex;
-      gap: 20px;
-      color: $secondary-color;
-      font-weight: bold;
+nav {
+  display: flex;
+  gap: 20px;
+  color: $secondary-color;
+  font-weight: bold;
+}
+
+a {
+  display: block;
+
+  &::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: $primary-color;
+    transition: width 0.3s linear;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s linear;
+  }
+
+  &:hover {
+    &::after {
+      transform: scaleX(1);
     }
   }
 }
