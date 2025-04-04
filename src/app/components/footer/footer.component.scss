@@ -1,0 +1,13 @@
+@import "/src/styles/variables";
+
+footer {
+  background-color: $primary-color;
+  color: $white;
+}
+
+.container {
+  display: flex;
+  gap: 40px;
+  justify-content: space-between;
+  align-items: center;
+}
