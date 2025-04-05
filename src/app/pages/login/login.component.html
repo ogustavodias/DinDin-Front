@@ -1,7 +1,10 @@
 <section>
   <div class="container">
-    <form [formGroup]="loginForm" (submit)="tryLogin($event)" class="auth-form">
+    <form [formGroup]="loginForm" class="auth-form" (ngSubmit)="onSubmit()">
       <legend>Login</legend>
+      <span *ngIf="errorOnSubmit" class="error-message">
+        Houve um erro, verifique o e-mail a senha e tente novamente.
+      </span>
       <div class="input-group">
         <div class="input-wrapper">
           <label for="">E-mail</label>

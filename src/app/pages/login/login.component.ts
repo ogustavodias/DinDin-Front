@@ -20,13 +20,19 @@ export class LoginComponent {
     password: [''],
   });
 
-  tryLogin(e: SubmitEvent) {
-    e.preventDefault();
+  errorOnSubmit: boolean = false;
+
+  onSubmit() {
+    this.errorOnSubmit = false;
     const { email, password } = this.loginForm.value;
+
     this.authService.login(email, password).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token);
         this.router.navigateByUrl('/welcome');
+      },
+      error: () => {
+        this.errorOnSubmit = true;
       },
     });
   }
