@@ -1,15 +1,20 @@
 <section>
   <div class="container">
-    <form (submit)="tryLogin($event)" class="auth-form">
+    <form [formGroup]="loginForm" (submit)="tryLogin($event)" class="auth-form">
       <legend>Login</legend>
       <div class="input-group">
         <div class="input-wrapper">
           <label for="">E-mail</label>
-          <input id="email" name="email" type="email" />
+          <input id="email" name="email" type="email" formControlName="email" />
         </div>
         <div class="input-wrapper">
           <label for="password">Senha</label>
-          <input id="password" name="password" type="password" />
+          <input
+            id="password"
+            name="password"
+            type="password"
+            formControlName="password"
+          />
         </div>
       </div>
       <button type="submit" class="tertiary-btn">Entrar</button>

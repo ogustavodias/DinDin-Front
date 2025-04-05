@@ -11,6 +11,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { provideHttpClient } from '@angular/common/http';
 import { WelcomeComponent } from './components/welcome/welcome.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -20,9 +22,9 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     FooterComponent,
     LoginComponent,
     WelcomeComponent,
-    SignUpComponent
+    SignUpComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
   providers: [provideHttpClient()],
   bootstrap: [AppComponent],
 })
