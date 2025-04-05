@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthResponse } from '../models/auth-response';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
@@ -16,5 +17,10 @@ export class AuthService {
       email: email,
       password: password,
     });
+  }
+
+  signUp(user: Partial<User>) {
+    const PATH = '/register';
+    return this.http.post<AuthResponse>(this.API + PATH, user);
   }
 }

@@ -20,7 +20,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     FooterComponent,
     LoginComponent,
     WelcomeComponent,
-    SignUpComponent,
+    SignUpComponent
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [provideHttpClient()],
