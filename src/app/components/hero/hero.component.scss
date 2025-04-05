@@ -24,21 +24,5 @@
   nav {
     display: flex;
     gap: 10px;
-
-    a {
-      display: block;
-      border-radius: 8px;
-      padding: 8px;
-      font-size: 14px;
-      color: $white;
-
-      &:first-child {
-        background-color: $tertiary-color;
-      }
-
-      &:last-child {
-        background-color: $primary-color;
-      }
-    }
   }
 }
