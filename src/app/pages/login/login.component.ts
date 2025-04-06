@@ -29,7 +29,8 @@ export class LoginComponent {
     this.authService.login(email, password).subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token);
-        this.router.navigateByUrl('/welcome');
+        this.authService.successInLogin();
+        this.router.navigateByUrl('/home');
       },
       error: () => {
         this.errorOnSubmit = true;

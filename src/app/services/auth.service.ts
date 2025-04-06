@@ -9,7 +9,8 @@ import { User } from '../models/user';
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  API = 'http://localhost:8081/auth';
+  private API = 'http://localhost:8081/auth';
+  private isAuthenticated = false;
 
   login(email: string, password: string) {
     const PATH = '/login';
@@ -22,5 +23,13 @@ export class AuthService {
   signUp(user: Partial<User>) {
     const PATH = '/register';
     return this.http.post<AuthResponse>(this.API + PATH, user);
+  }
+
+  successInLogin() {
+    this.isAuthenticated = true;
+  }
+
+  isLoggedIn() {
+    return this.isAuthenticated;
   }
 }
