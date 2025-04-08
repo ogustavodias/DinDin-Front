@@ -1,19 +1,32 @@
 <section>
   <div class="container">
-    <form (submit)="trySignUp($event)" class="auth-form">
+    <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()" class="auth-form">
       <legend>Registrar-se</legend>
+      <span *ngIf="errorOnSubmit" class="error-message">
+        Houve um erro, tente novamente com outros dados.
+      </span>
       <div class="input-group">
         <div class="input-wrapper">
           <label for="">Usuário</label>
-          <input id="username" name="username" type="text" />
+          <input
+            id="username"
+            name="username"
+            type="text"
+            formControlName="name"
+          />
         </div>
         <div class="input-wrapper">
           <label for="">E-mail</label>
-          <input id="email" name="email" type="email" />
+          <input id="email" name="email" type="email" formControlName="email" />
         </div>
         <div class="input-wrapper">
           <label for="password">Senha</label>
-          <input id="password" name="password" type="password" />
+          <input
+            id="password"
+            name="password"
+            type="password"
+            formControlName="password"
+          />
         </div>
       </div>
       <button type="submit" class="tertiary-btn">Registrar</button>

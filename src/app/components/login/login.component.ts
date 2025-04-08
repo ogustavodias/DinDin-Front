@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -24,14 +25,10 @@ export class LoginComponent {
 
   onSubmit() {
     this.errorOnSubmit = false;
-    const { email, password } = this.loginForm.value;
+    let user: Partial<User> = this.loginForm.value;
 
-    this.authService.login(email, password).subscribe({
-      next: (response) => {
-        localStorage.setItem('token', response.token);
-        this.authService.successInLogin();
-        this.router.navigateByUrl('/home');
-      },
+    this.authService.login(user).subscribe({
+      next: (response) => {},
       error: () => {
         this.errorOnSubmit = true;
       },

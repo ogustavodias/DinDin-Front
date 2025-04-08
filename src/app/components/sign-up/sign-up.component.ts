@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 import { User } from '../../models/user';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-sign-up',
@@ -9,14 +10,25 @@ import { User } from '../../models/user';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent {
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService, private formBuilder: FormBuilder) {}
 
-  trySignUp(e: SubmitEvent) {
-    e.preventDefault();
-    let testUser: Partial<User> = {email: "testando@hotmail.com", name: "teste", password: "testandotestando"};
-    this.auth.signUp(testUser).subscribe({
+  signUpForm: FormGroup = this.formBuilder.group({
+    name: [''],
+    email: [''],
+    password: [''],
+  });
+
+  errorOnSubmit: boolean = false;
+
+  onSubmit() {
+    let user: Partial<User> = this.signUpForm.value;
+
+    this.auth.signUp(user).subscribe({
       next: (response) => {
         console.log(response);
+      },
+      error: () => {
+        this.errorOnSubmit = true;
       },
     });
   }

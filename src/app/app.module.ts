@@ -6,13 +6,13 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LoginComponent } from './pages/login/login.component';
+import { LoginComponent } from './components/login/login.component';
 
-import { provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -24,8 +24,11 @@ import { CommonModule } from '@angular/common';
     HomeComponent,
     SignUpComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule],
-  providers: [provideHttpClient()],
+  imports: [BrowserModule, AppRoutingModule, ReactiveFormsModule, HttpClientModule],
+  providers: [
+    provideHttpClient(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
