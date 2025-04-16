@@ -1,0 +1,48 @@
+<div class="container">
+  <h1 class="title">Despesas</h1>
+
+  <div class="grid">
+    <div class="filter-wrapper">
+      <h2 class="subtitle">Filtros</h2>
+      <form class="filter-form">
+        <input
+          id="initial-date"
+          name="initial-date"
+          type="date"
+          [max]="maxDateFilter"
+        />
+        <p>Até</p>
+        <input
+          id="final-date"
+          name="final-date"
+          type="date"
+          [max]="maxDateFilter"
+        />
+        <button type="button" class="tertiary-btn">Aplicar</button>
+      </form>
+    </div>
+    <div class="list-wrapper">
+      <h2 class="subtitle">Lista</h2>
+      <ul class="expense-list">
+        <li class="expense-item">
+          <span class="category">HEALTH</span>
+          <span class="amount">R$ 199,99</span>
+          <span class="date">15/04/2025</span>
+          <span class="config"><i class="fa-solid fa-gear"></i></span>
+        </li>
+        <li class="expense-item">
+          <span class="category">HEALTH</span>
+          <span class="amount">R$ 199,99</span>
+          <span class="date">15/04/2025</span>
+          <span class="config"><i class="fa-solid fa-gear"></i></span>
+        </li>
+        <li class="expense-item">
+          <span class="category">HEALTH</span>
+          <span class="amount">R$ 199,99</span>
+          <span class="date">15/04/2025</span>
+          <span class="config"><i class="fa-solid fa-gear"></i></span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

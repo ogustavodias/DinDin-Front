@@ -1,0 +1,61 @@
+@import "/src/styles/variables";
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 60px;
+}
+
+.title {
+  color: $tertiary-color;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: $secondary-color;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.filter-form {
+  display: grid;
+  gap: 10px;
+  font-size: 0.875rem;
+  color: $secondary-color;
+
+  input {
+    padding: 4px;
+    border: 1px solid rgba($color: $secondary-color, $alpha: 0.1);
+    border-radius: 4px;
+    outline: none;
+
+    transition: border-color 0.3s linear;
+    &:focus {
+      border-color: rgba($color: $primary-color, $alpha: 1);
+    }
+  }
+}
+
+.expense-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 5px;
+  border-radius: 4px;
+  border: 1px solid rgba($color: $primary-color, $alpha: 0.1);
+  font-size: 0.875rem;
+  color: $secondary-color;
+
+  .category {
+    font-weight: bold;
+  }
+
+  .config {
+    cursor: pointer;
+
+    transition: opacity 0.3s linear;
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}
