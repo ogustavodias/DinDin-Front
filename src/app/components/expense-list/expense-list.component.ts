@@ -7,9 +7,20 @@ import { Component } from '@angular/core';
 })
 export class ExpenseListComponent {
   today: Date = new Date();
-  year = this.today.getFullYear();
-  month = String(this.today.getMonth() + 1).padStart(2, '0');
-  day = String(this.today.getDate()).padStart(2, '0');
-  maxDateFilter = `${this.year}-${this.month}-${this.day}`;
 
+  getPreviousThirtyDays() {
+    let previousThirtyDays: Date = new Date();
+    previousThirtyDays.setDate(this.today.getDate() - 30);
+    const year = previousThirtyDays.getFullYear();
+    const month = String(previousThirtyDays.getMonth() + 1).padStart(2, '0');
+    const day = String(previousThirtyDays.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  getToday() {
+    const year = this.today.getFullYear();
+    const month = String(this.today.getMonth() + 1).padStart(2, '0');
+    const day = String(this.today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
 }

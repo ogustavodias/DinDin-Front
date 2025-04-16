@@ -1,6 +1,5 @@
 <div class="container">
   <h1 class="title">Despesas</h1>
-
   <div class="grid">
     <div class="filter-wrapper">
       <h2 class="subtitle">Filtros</h2>
@@ -9,14 +8,16 @@
           id="initial-date"
           name="initial-date"
           type="date"
-          [max]="maxDateFilter"
+          [max]="getToday()"
+          [value]="getPreviousThirtyDays()"
         />
         <p>Até</p>
         <input
           id="final-date"
           name="final-date"
           type="date"
-          [max]="maxDateFilter"
+          [max]="getToday()"
+          [value]="getToday()"
         />
         <button type="button" class="tertiary-btn">Aplicar</button>
       </form>
