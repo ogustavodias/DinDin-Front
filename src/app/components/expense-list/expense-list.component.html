@@ -3,44 +3,34 @@
   <div class="grid">
     <div class="filter-wrapper">
       <h2 class="subtitle">Filtros</h2>
-      <form class="filter-form">
+      <form [formGroup]="filterForm" class="filter-form">
         <input
           id="initial-date"
           name="initial-date"
           type="date"
-          [max]="getToday()"
-          [value]="getPreviousThirtyDays()"
+          [max]="today"
+          [value]="previousThirtyDays"
+          formControlName="from"
         />
         <p>Até</p>
         <input
           id="final-date"
           name="final-date"
           type="date"
-          [max]="getToday()"
-          [value]="getToday()"
+          [max]="today"
+          [value]="today"
+          formControlName="to"
         />
-        <button type="button" class="tertiary-btn">Aplicar</button>
+        <button type="button" class="tertiary-btn" (click)="getExpensesInPeriod()">Aplicar</button>
       </form>
     </div>
     <div class="list-wrapper">
       <h2 class="subtitle">Lista</h2>
       <ul class="expense-list">
-        <li class="expense-item">
-          <span class="category">HEALTH</span>
-          <span class="amount">R$ 199,99</span>
-          <span class="date">15/04/2025</span>
-          <span class="config"><i class="fa-solid fa-gear"></i></span>
-        </li>
-        <li class="expense-item">
-          <span class="category">HEALTH</span>
-          <span class="amount">R$ 199,99</span>
-          <span class="date">15/04/2025</span>
-          <span class="config"><i class="fa-solid fa-gear"></i></span>
-        </li>
-        <li class="expense-item">
-          <span class="category">HEALTH</span>
-          <span class="amount">R$ 199,99</span>
-          <span class="date">15/04/2025</span>
+        <li *ngFor="let item of expenses" class="expense-item">
+          <span class="category">{{ item.category }}</span>
+          <span class="amount">{{ item.amount }}</span>
+          <span class="date">{{ item.date }}</span>
           <span class="config"><i class="fa-solid fa-gear"></i></span>
         </li>
       </ul>

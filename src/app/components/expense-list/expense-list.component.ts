@@ -1,26 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Expense } from 'src/app/models/expense';
+import { ExpenseService } from 'src/app/services/expense.service';
+import { getPreviousThirtyDays, getToday } from 'src/app/utils/date';
+getPreviousThirtyDays;
+getToday;
 
 @Component({
   selector: 'app-expense-list',
   templateUrl: './expense-list.component.html',
   styleUrls: ['./expense-list.component.scss'],
 })
-export class ExpenseListComponent {
-  today: Date = new Date();
+export class ExpenseListComponent implements OnInit {
+  expenses: Expense[] = [];
+  today: string = getToday();
+  previousThirtyDays: string = getPreviousThirtyDays();
 
-  getPreviousThirtyDays() {
-    let previousThirtyDays: Date = new Date();
-    previousThirtyDays.setDate(this.today.getDate() - 30);
-    const year = previousThirtyDays.getFullYear();
-    const month = String(previousThirtyDays.getMonth() + 1).padStart(2, '0');
-    const day = String(previousThirtyDays.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+  constructor(
+    private expenseService: ExpenseService,
+    private formBuilder: FormBuilder
+  ) {}
+
+  filterForm: FormGroup = this.formBuilder.group({
+    from: [this.previousThirtyDays],
+    to: [this.today],
+  });
+
+  ngOnInit(): void {
+    this.getExpensesInPeriod();
   }
 
-  getToday() {
-    const year = this.today.getFullYear();
-    const month = String(this.today.getMonth() + 1).padStart(2, '0');
-    const day = String(this.today.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+  getExpensesInPeriod() {
+    this.expenseService
+      .getExpensesInPeriod(this.filterForm.value.from, this.filterForm.value.to)
+      .subscribe({
+        next: (response) => {
+          this.expenses = response.expenses;
+        },
+      });
   }
 }
